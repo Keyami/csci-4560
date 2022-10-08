@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block header %}
+  <h2>{% block title %}Inventory{% endblock %}</h2>
+  {% if g.user %}
+    <a type=button class="btn btn-info" href="{{ url_for('media.create') }}">Add new book</a>
+    <br>
+  {% endif %}
+{% endblock %}
+
+{% block content %}
+  {% for items in books %}
+    <div class="card" style="width: 18rem;">
+      <img src="{{ items['image'] }}" class="card-img-top">
+      <div class="card-body">
+        <h5 class="card-title">{{ items['title'] }}</h5>
+        <p class="card-text">{{ items['author'] }}<br>{{ items['publication'] }}</p>
+        <a href="{{ items['isbn'] }}/view" class="btn btn-primary">Check out.</a>
+      </div>
+    </div>   
+     {% if not loop.last %}
+      <hr>
+    {% endif %}
+  {% endfor %}
+{% endblock %}

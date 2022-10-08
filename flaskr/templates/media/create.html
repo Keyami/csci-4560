@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+
+{% block header %}
+  <h1>{% block title %}Create listing{% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+  <form method="post">
+    <label for="title">Title</label>
+    <input name="title" id="title" value="{{ request.form['title'] }}" required>
+	<br>
+    <label for="author">Author</label>
+    <textarea name="author" id="author">{{ request.form['author'] }}</textarea>
+	<br>
+	<label for="publication">Year</label>
+    <textarea name="publication" id="publication">{{ request.form['publication'] }}</textarea>
+    <br>
+    <label for="genre">Genre</label>
+    <textarea name="genre" id="genre">{{ request.form['genre'] }}</textarea>
+    <br>
+    <label for="copies">Copies</label>
+    <textarea name="copies" id="copies">{{ request.form['copies'] }}</textarea>
+    <br>
+    <label for="availability">Availability</label>
+    <textarea name="availability" id="availability">{{ request.form['availability'] }}</textarea>
+    <br>
+    <label for="isbn">ISBN</label>
+    <textarea name="isbn" id="isbn">{{ request.form['isbn'] }}</textarea>
+    <br>
+    <label for="isbn">Image</label>
+    <textarea name="image" id="image">{{ request.form['image'] }}</textarea>
+	<br>
+	<input type="submit" value="Save">
+
+
+  </form>
+{% endblock %}
