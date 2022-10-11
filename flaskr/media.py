@@ -8,6 +8,7 @@ from flaskr.db import get_db
 
 bp = Blueprint('media', __name__)
 
+# The index() function simply fetches the content listed in table 'items' and passes them to index.html as array 'books'
 @bp.route('/')
 def index():
     db = get_db()
@@ -18,6 +19,7 @@ def index():
         ).fetchall()
     return render_template('media/index.html', books=books)
 
+# The create() function takes input from the create.html page forms of the same name and adds them to the database.
 @bp.route('/create', methods=('GET', 'POST'))
 @login_required
 def create():
@@ -49,6 +51,7 @@ def create():
 
     return render_template('media/create.html')
 
+# Fetches data of the selected item.
 def get_post(id):
     book = get_db().execute(
         'SELECT title, author, publication, genre, copies, availability, isbn, image'
@@ -62,6 +65,7 @@ def get_post(id):
 
     return book
 
+# view() uses the get_post() function to display an item
 @bp.route('/<int:id>/view', methods=('GET', 'POST'))
 @login_required
 def view(id):
@@ -94,7 +98,10 @@ def view(id):
             return redirect(url_for('media.index'))
 
     return render_template('media/update.html', book=book)
+
+# delete() function selects item in table and removes it, then redirects you from its view page to the homepage.
 @bp.route('/<int:id>/delete', methods=('POST',))
+# This is a callback to the login_required function in flaskr.auth, this means a user without a session id will not be able to see this button.
 @login_required
 def delete(id):
     get_post(id)

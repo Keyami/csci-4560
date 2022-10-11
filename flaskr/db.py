@@ -3,7 +3,8 @@ import sqlite3
 import click
 from flask import current_app, g
 
-
+# get_db() is just a passthrough function for the database info to the function that calls it
+# database info is stored in the instance config (flaskr.sqlite)
 def get_db():
     if 'db' not in g:
         g.db = sqlite3.connect(
@@ -14,19 +15,20 @@ def get_db():
 
     return g.db
 
-
 def close_db(e=None):
     db = g.pop('db', None)
 
     if db is not None:
         db.close()
 
+# Initializes db using the flaskr.schema.sql file
 def init_db():
     db = get_db()
 
     with current_app.open_resource('schema.sql') as f:
         db.executescript(f.read().decode('utf8'))
 
+# Registers command with flaskr
 @click.command('init-db')
 def init_db_command():
     """Clear the existing data and create new tables."""
