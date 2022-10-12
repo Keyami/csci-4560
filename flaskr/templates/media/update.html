@@ -15,29 +15,18 @@
     <div class="col">
      <p style="text-align:left;"> <br>
       Author: {{ book['author'] }}
-      <br>
-      <br>
-      <br>
+      <br><br><br>
       Published: {{ book['publication'] }}
-      <br>
-      <br>
-      <br>
+      <br><br><br>
       Genre: {{ book['genre'] }}
-      <br>
-      <br>
-      <br>
+      <br><br><br>
       Available Copies: {{ book['availability'] }} / {{ book['copies'] }}
-      <br>
-      <br>
-      <br>
+      <br><br><br>
       ISBN: {{ book['isbn'] }}
-      <br></p>
-      <br>
+      <br><br><br>
       <button type="button" class="btn btn-primary" style="float: left">Check out</button>
       {% if g.user %}
-      <br>
-      <br>
-      <br>
+      <br><br><br>
       <a href="delete" class="btn btn-warning">Remove</a>
       {% endif %}
 
