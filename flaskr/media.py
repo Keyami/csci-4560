@@ -19,6 +19,23 @@ def index():
         ).fetchall()
     return render_template('media/index.html', books=books)
 
+# search() simply takes the passed argument and polls the database for it, then it redirects to index to display the results 
+@bp.route('/<id>', methods=('GET', 'POST'))
+def search(id):
+    db = get_db()
+    books = db.execute(
+        "SELECT *"
+        " FROM items WHERE title LIKE '%" + id + "%'"
+        " ORDER BY publication DESC"
+        ).fetchall()
+    return render_template('media/index.html', books=books)
+
+# search_input passes the value entered into the 'search' form to the search() functions
+@bp.route('/search', methods=('GET', 'POST'))
+def search_input():
+    query = request.form['search']
+    return redirect('/'+query+'')
+
 # The create() function takes input from the create.html page forms of the same name and adds them to the database.
 @bp.route('/create', methods=('GET', 'POST'))
 @login_required
@@ -100,12 +117,19 @@ def view(id):
     return render_template('media/update.html', book=book)
 
 # delete() function selects item in table and removes it, then redirects you from its view page to the homepage.
-@bp.route('/<int:id>/delete', methods=('POST',))
+@bp.route('/<int:id>/delete', methods=('GET', 'POST',))
 # This is a callback to the login_required function in flaskr.auth, this means a user without a session id will not be able to see this button.
 @login_required
 def delete(id):
-    get_post(id)
-    db = get_db()
-    db.execute('DELETE FROM items WHERE isbn = id', (isbn,))
-    db.commit()
-    return redirect(url_for('media.index'))
+    isbn = id
+    error = None
+    
+    if error is not None:
+        flash(error)
+    else:
+        db = get_db()
+        db.execute(
+            'DELETE FROM items WHERE isbn'
+        )
+        db.commit()
+        return redirect(url_for('media.index'))

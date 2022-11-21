@@ -4,22 +4,31 @@
   <h2>{% block title %}Inventory{% endblock %}</h2>
   {% if g.user %}
     <a type=button class="btn btn-info" href="{{ url_for('media.create') }}">Add new book</a>
-    <br>
+    <hr>
   {% endif %}
 {% endblock %}
 
 {% block content %}
-  {% for items in books %}
-    <div class="card" style="width: 18rem;">
-      <img src="{{ items['image'] }}" class="card-img-top">
+<div class="row row-cols-1 row-cols-md-2 g-4">
+{% for items in books %}
+<div class="card mb-3" style="max-width: 540px;">
+  <div class="row g-0">
+    <div class="col-md-4">
+      <img src="{{ items['image'] }}" class="img-fluid rounded-start">
+    </div>
+    <div class="col-md-8">
       <div class="card-body">
         <h5 class="card-title">{{ items['title'] }}</h5>
-        <p class="card-text">{{ items['author'] }}<br>{{ items['publication'] }}</p>
-        <a href="{{ items['isbn'] }}/view" class="btn btn-primary">Check out.</a>
+        <p class="card-text">{{ items['author'] }}</p>
+         <p class="card-text">{{ items['publication'] }}</p>
+         <a href="{{ items['isbn'] }}/view" class="btn btn-primary">Check out</a>
       </div>
-    </div>   
-     {% if not loop.last %}
-      <hr>
+    </div>
+  </div>
+</div>
+{% if not loop.last %}
+<hr>
     {% endif %}
   {% endfor %}
+</div>
 {% endblock %}

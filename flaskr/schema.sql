@@ -1,7 +1,7 @@
 DROP TABLE IF EXISTS member;
 DROP TABLE IF EXISTS checked;
 DROP TABLE IF EXISTS items;
-DROP TABLE IF EXISTS user;;
+DROP TABLE IF EXISTS user;
 
 create table member
 (

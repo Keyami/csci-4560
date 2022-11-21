@@ -1,16 +1,17 @@
-# csci-4560
-GitHub for CSCI 4560 database project; 2022.
-Gage Richardson/Nathan Goodrum
+Installing flask:
+    1. cd flask
+    2. sudo apt install python3.10-venv
+	3. sudo python3 -m venv venv
+	4. . venv/bin/activate
+	5. sudo pip install Flask
+	
+Running the LMD website:
+    1. cd flask
+	2. flask --app flaskr run
+	3. Navigate to localhost:5000
 
 
-1. Install Flask
-2. Open a terminal instance in csci-4560
-3. Run '. venv/bin/activate'
-4. Run 'flask --app flaskr --debug run'
-5. Navigate to localhost:5000
-
-
-# File Structure and Corresponding URL:
+File Structure and Corresponding URL:
 
 flaskr/auth.py - 
   Python code for authenticating user accounts.
