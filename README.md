@@ -1,16 +1,19 @@
 # Setup
 Installing flask:
-	1. cd flask
-	2. sudo apt install python3.10-venv
-	3. sudo python3 -m venv venv
-	4. . venv/bin/activate
-	5. sudo pip install Flask
-	
-Running the LMD website:
-	1. cd flask
-	2. flask --app flaskr run
-	3. Navigate to localhost:5000
+```
+1. cd flask
+2. sudo apt install python3.10-venv
+3. sudo python3 -m venv venv
+4. . venv/bin/activate
+5. sudo pip install Flask
+```
 
+Running the LMD website:
+```
+1. cd flask
+2. flask --app flaskr run
+3. Navigate to localhost:5000
+```
 
 # File Structure and Corresponding URL:
 
